@@ -21,6 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ASM.BL\ASM.BL.csproj" />
+    <ProjectReference Include="..\ASM.Data\ASM.Data.csproj" />
     <ProjectReference Include="..\ASM.Web\ASM.Web.csproj" />
   </ItemGroup>
 

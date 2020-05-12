@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ASM.BL;
+using ASM.Web.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace ASM.Web.Controllers
@@ -6,15 +8,23 @@ namespace ASM.Web.Controllers
     public class SettingsController : Controller
     {
         private readonly ILogger<SettingsController> _logger;
+        private SettingsService settingsService;
 
         public SettingsController(ILogger<SettingsController> logger)
         {
             _logger = logger;
+            settingsService = new SettingsService();
         }
 
         public IActionResult Index()
         {
-            return View();
+            var settingsData = settingsService.GetSettings();
+            SettingsModel model = new SettingsModel()
+            {
+                Title = settingsData.Title
+            };
+
+            return View(model);
         }
     }
 }
