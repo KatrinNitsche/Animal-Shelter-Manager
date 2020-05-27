@@ -31,6 +31,27 @@ namespace ASM.Web.Controllers
 
             return View(model);
         }
-        
+
+        public IActionResult Save(SettingsModel model)
+        {
+            if (!ModelState.IsValid) return View("Index", model);
+
+            var result = settingsService.Update(new Data.Settings()
+            {
+                Title = model.Title,
+                Address = new Data.Address()
+                {
+                    Line1 = model.Line1,
+                    Line2 = model.Line2,
+                    City = model.City,
+                    Country = model.Country,
+                    PostCode = model.PostCode
+                }
+            });
+
+            if (result == null) return View("Index", model);
+
+            return View("Index", model);
+        }
     }
 }

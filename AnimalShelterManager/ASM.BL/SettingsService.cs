@@ -8,6 +8,11 @@ namespace ASM.BL
 
         public SettingsService()
         {
+            SetDummyData();
+        }
+
+        private void SetDummyData()
+        {
             var address = new Address()
             {
                 Line1 = "Address Line 1",
@@ -29,6 +34,7 @@ namespace ASM.BL
         public Settings Update(Settings settings)
         {
             settings.Title = settings.Title;
+            settings.Address = settings.Address;
 
             return settings;
         }
