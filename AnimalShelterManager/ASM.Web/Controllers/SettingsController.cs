@@ -21,10 +21,16 @@ namespace ASM.Web.Controllers
             var settingsData = settingsService.GetSettings();
             SettingsModel model = new SettingsModel()
             {
-                Title = settingsData.Title
+                Title = settingsData.Title,
+                Line1 = settingsData.Address.Line1,
+                Line2 = settingsData.Address.Line2,
+                City = settingsData.Address.City,
+                PostCode = settingsData.Address.PostCode,
+                Country = settingsData.Address.Country
             };
 
             return View(model);
         }
+        
     }
 }
