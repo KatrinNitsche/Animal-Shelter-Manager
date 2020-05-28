@@ -6,56 +6,116 @@
 
 <h1>Settings for '@Model.Title'</h1>
 
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+<div class="alert alert-@Model.MessageType alert-dismissible fade show" role="alert">
+    @Model.Message
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+}
+
 <form method="post" action="/Settings/Save">
 
-    <div class="col-6">
-        <div class="card">
-            <div class="card-header">
-               <h3>Address</h3>
+    <div class="row navbar">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Address</h3>
+                </div>
+
+                <div class="card-body">
+                    <input type="hidden" asp-for="Title" />
+
+                    <div class="row col-12">
+                        <div class="form-group col-12">
+                            <label for="address1">Address Line 1</label>
+                            <input type="text" class="form-control" id="addressLine1" asp-for="Line1">
+                            <span asp-validation-for="Line1" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row col-12">
+                        <div class="form-group col-12">
+                            <label for="address2">Address Line 2</label>
+                            <input type="text" class="form-control" id="addressLine2" asp-for="Line2">
+                            <span asp-validation-for="Line2" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row col-12">
+
+                        <div class="form-group col-4">
+                            <label for="Postcode">Postcode</label>
+                            <input type="text" class="form-control" id="Postcode" asp-for="PostCode">
+                            <span asp-validation-for="PostCode" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-8">
+                            <label for="City">City</label>
+                            <input type="text" class="form-control" id="City" asp-for="City">
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row col-12">
+                        <div class="form-group col-12">
+                            <label for="Country">Country</label>
+                            <input type="text" class="form-control" id="Country" asp-for="Country">
+                            <span asp-validation-for="Country" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+        </div>
 
-            <div class="card-body">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Contact Details</h3>
+                </div>
 
-                <div class="row col-12">
-                    <div class="form-group col-12">
-                        <label for="address1">Address Line 1</label>
-                        <input type="text" class="form-control" id="addressLine1" asp-for="Line1" >
+                <div class="card-body">
+                    <input type="hidden" asp-for="Title" />
+
+                    <div class="row col-12">
+                        <div class="form-group col-12">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" id="email" asp-for="Email">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row col-12">
+                        <div class="form-group col-12">
+                            <label for="Phone">Phone</label>
+                            <input type="text" class="form-control" id="Phone" asp-for="Phone">
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row col-12">
+                        <div class="form-group col-12">
+                            <label for="Mobile">Mobile</label>
+                            <input type="text" class="form-control" id="Mobile" asp-for="Mobile">
+                            <span asp-validation-for="Mobile" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="row col-12">
-                    <div class="form-group col-12">
-                        <label for="address2">Address Line 2</label>
-                        <input type="text" class="form-control" id="addressLine2" asp-for="Line2" >
-                    </div>
-                </div>
-
-                <div class="row col-12">
-
-                    <div class="form-group col-4">
-                        <label for="Postcode">Postcode</label>
-                        <input type="text" class="form-control" id="Postcode" asp-for="PostCode" >
-                    </div>
-
-                    <div class="form-group col-8">
-                        <label for="City">City</label>
-                        <input type="text" class="form-control" id="City" asp-for="City" >
-                    </div>
-                </div>
-
-                <div class="row col-12">
-                    <div class="form-group col-12">
-                        <label for="Country">Country</label>
-                        <input type="text" class="form-control" id="Country" asp-for="Country" >
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
 </form>
 
+@section scripts {
+    <script>
+        $('.alert').alert()
+    </script>
+}

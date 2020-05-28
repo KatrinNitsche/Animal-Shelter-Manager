@@ -1,10 +1,11 @@
-﻿using ASM.Data;
+﻿using ASM.BL.Interfaces;
+using ASM.Data;
 
 namespace ASM.BL
 {
-    public class SettingsService
+    public class SettingsService : ISettingsService
     {
-        private Settings settings;
+        private Settings _settings;
 
         public SettingsService()
         {
@@ -22,21 +23,29 @@ namespace ASM.BL
                 Country = "United Kingdom"
             };
 
-            settings = new Settings() { Title = "Your Animal Shelter", Address = address };
+            var contact = new ContactDetails()
+            {
+                Email = "Test@test.com",
+                Phone = "01234 56789",
+                Mobile = "09876 54321"
+            };
+
+            _settings = new Settings() { Title = "Your Animal Shelter", Address = address, ContactDetails = contact };
         }
 
         public Settings GetSettings()
         {
-            return settings;
+            return _settings;
            
         }
 
         public Settings Update(Settings settings)
         {
-            settings.Title = settings.Title;
-            settings.Address = settings.Address;
+            _settings.Title = settings.Title;
+            _settings.Address = settings.Address;
+            _settings.ContactDetails = settings.ContactDetails;
 
-            return settings;
+            return _settings;
         }
     }
 }
