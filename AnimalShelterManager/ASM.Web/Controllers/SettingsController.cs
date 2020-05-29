@@ -45,7 +45,9 @@ namespace ASM.Web.Controllers
             model.Message = "Your changes were saved";
             return View("Index", model);
         }
-   
+
+        #region Mapping
+
         private Data.Settings GetSettings(SettingsModel model)
         {
             return new Data.Settings()
@@ -83,5 +85,7 @@ namespace ASM.Web.Controllers
                 Phone = settingsData.ContactDetails.Phone
             };
         }
+
+        #endregion
     }
 }

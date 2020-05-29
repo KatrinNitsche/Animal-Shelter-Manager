@@ -3,6 +3,8 @@ using ASM.Data;
 
 namespace ASM.BL
 {
+    // ToDo: change this service to use a repository for permanent storage
+
     public class SettingsService : ISettingsService
     {
         private Settings _settings;
