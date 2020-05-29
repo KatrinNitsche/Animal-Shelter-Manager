@@ -10,10 +10,5 @@ namespace ASM.Data
         public Address Address { get; set; }
 
         public ContactDetails ContactDetails { get; set; }
-
-        public Settings()
-        {
-            this.Id = Guid.NewGuid();
-        }
     }
 }

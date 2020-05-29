@@ -1,11 +1,13 @@
-﻿using ASM.Data;
+﻿using ASM.DAL.Interfaces;
+using ASM.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace ASM.DAL.Repositories
 {
-    public class SettingsRepository : BaseRepository<Settings>
+    public class SettingsRepository : BaseRepository<Settings>, ISettingsRepository
     {
         public SettingsRepository(DataContext context) : base(context)
         {
@@ -13,7 +15,7 @@ namespace ASM.DAL.Repositories
 
         public override IEnumerable<Settings> GetAll()
         {
-            throw new NotImplementedException();
+            return this.Context.Settings;
         }
 
         public override IQueryable<Settings> GetAll(bool asyn = true)
@@ -23,7 +25,9 @@ namespace ASM.DAL.Repositories
 
         public override Settings GetById(Guid id)
         {
-            return this.Context.Settings.FirstOrDefault(x => x.Id == id);
+            return this.Context.Settings
+                .Include("Address").Include("ContactDetails")
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public override Settings ToggleActive(Guid id)

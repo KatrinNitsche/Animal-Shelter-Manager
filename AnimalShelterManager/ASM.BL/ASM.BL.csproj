@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ASM.DAL\ASM.DAL.csproj" />
     <ProjectReference Include="..\ASM.Data\ASM.Data.csproj" />
   </ItemGroup>
 

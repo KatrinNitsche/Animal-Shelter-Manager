@@ -23,6 +23,7 @@ namespace ASM.DAL.Repositories
         public TEntity Add(TEntity entry)
         {
             Context.Set<TEntity>().Add(entry);
+            Commit();
             return entry;
         }
 

@@ -1,53 +1,68 @@
 ﻿using ASM.BL.Interfaces;
+using ASM.DAL.Interfaces;
 using ASM.Data;
+using System;
+using System.Linq;
 
 namespace ASM.BL
 {
-    // ToDo: change this service to use a repository for permanent storage
-
     public class SettingsService : ISettingsService
     {
-        private Settings _settings;
+        private ISettingsRepository _repository;
 
-        public SettingsService()
+        public SettingsService(ISettingsRepository repository)
         {
-            SetDummyData();
-        }
-
-        private void SetDummyData()
-        {
-            var address = new Address()
-            {
-                Line1 = "Address Line 1",
-                Line2 = "Address Line 2",
-                PostCode = "A12 3BC",
-                City = "London",
-                Country = "United Kingdom"
-            };
-
-            var contact = new ContactDetails()
-            {
-                Email = "Test@test.com",
-                Phone = "01234 56789",
-                Mobile = "09876 54321"
-            };
-
-            _settings = new Settings() { Title = "Your Animal Shelter", Address = address, ContactDetails = contact };
+            _repository = repository;
         }
 
         public Settings GetSettings()
         {
-            return _settings;
-           
+            // ToDo: get settings id for the settings of the current user
+            Guid id = new Guid();
+
+            if (_repository.GetAll().Count() == 0)
+            {
+                var address = new Address()
+                {
+                    Id = Guid.NewGuid(),
+                    Line1 = "Address Line 1",
+                    Line2 = "Address Line 2",
+                    PostCode = "A12 3BC",
+                    City = "London",
+                    Country = "United Kingdom"
+                };
+
+                var contact = new ContactDetails()
+                {
+                    Id = Guid.NewGuid(),
+                    Email = "Test@test.com",
+                    Phone = "01234 56789",
+                    Mobile = "09876 54321"
+                };
+
+                var idNew = Guid.NewGuid();
+                _repository.Add(new Settings()
+                {
+                    Id = id,
+                    Title = "Your Animal Shelter",
+                    Address = address,
+                    ContactDetails = contact
+                });
+
+                id = idNew;
+            }
+            else
+            {
+                id = _repository.GetAll().First().Id;
+            }
+            
+
+            return _repository.GetById(id);           
         }
 
         public Settings Update(Settings settings)
         {
-            _settings.Title = settings.Title;
-            _settings.Address = settings.Address;
-            _settings.ContactDetails = settings.ContactDetails;
-
-            return _settings;
+            return _repository.Update(settings);
         }
     }
 }
