@@ -41,15 +41,17 @@ namespace ASM.BL
                 };
 
                 var idNew = Guid.NewGuid();
-                _repository.Add(new Settings()
+
+                var newSettings = new Settings()
                 {
                     Id = id,
                     Title = "Your Animal Shelter",
                     Address = address,
                     ContactDetails = contact
-                });
+                };
 
-                id = idNew;
+                _repository.Add(newSettings);
+                return newSettings;
             }
             else
             {

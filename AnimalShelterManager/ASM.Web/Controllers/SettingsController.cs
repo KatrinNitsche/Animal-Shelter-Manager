@@ -72,6 +72,15 @@ namespace ASM.Web.Controllers
 
         private SettingsModel GetModel(Data.Settings settingsData)
         {
+            if (settingsData == null)
+            {
+                return new SettingsModel()
+                {
+                    MessageType = "danger",
+                    Message = "Error while loding the settings data. Please try refreshing the page and inform support if it doesnt' work."
+                };
+            }
+
             return new SettingsModel()
             {
                 Title = settingsData.Title,
