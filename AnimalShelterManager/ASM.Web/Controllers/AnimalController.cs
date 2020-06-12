@@ -25,8 +25,46 @@ namespace ASM.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(AnimalModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.MessageType = "danger";
+                model.Message = "Some Fields are not valid, please check the individual inputs fields.";
+                return View("Index", model);
+            }
+
+            var result = _animalService.Add(GetAnimal(model));
+
+            if (result == null)
+            {
+                model.MessageType = "danger";
+                model.Message = "Error while saving the animal. Try again and contact support if the problem persists.";
+                return View("Index", model);
+            }
+
+            model.MessageType = "success";
+            model.Message = "The animal was successfully added.";
+            return View("Index", model);
+        }
 
         #region Mapping
+
+        private Animal GetAnimal(AnimalModel model)
+        {
+            return new Animal()
+            {
+                Name = model.Name,
+                DoB = model.DoB
+            };
+        }
 
         private AnimalListModel GetModel(IEnumerable<Animal> listOfAnimlas)
         {
