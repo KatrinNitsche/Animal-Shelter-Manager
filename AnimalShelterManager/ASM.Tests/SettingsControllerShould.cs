@@ -39,7 +39,9 @@ namespace ASM.Tests
             using (var context = new DataContext(options))
             {
                 ISettingsRepository repository = new SettingsRepository(context);
-                ISettingsService settingsService = new SettingsService(repository);
+                IAddressRepository addressRepository = new AddressRepository(context);
+                IContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository(context);
+                ISettingsService settingsService = new SettingsService(repository, addressRepository, contactDetailsRepository);
                 SettingsController sut = new SettingsController(logger, settingsService);
                 Assert.NotNull(sut);
             }
@@ -51,7 +53,9 @@ namespace ASM.Tests
             using (var context = new DataContext(options))
             {
                 ISettingsRepository repository = new SettingsRepository(context);
-                ISettingsService settingsService = new SettingsService(repository);
+                IAddressRepository addressRepository = new AddressRepository(context);
+                IContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository(context);
+                ISettingsService settingsService = new SettingsService(repository, addressRepository, contactDetailsRepository);
                 SettingsController sut = new SettingsController(logger, settingsService);
                 
                 var response = sut.Index();
@@ -66,7 +70,9 @@ namespace ASM.Tests
             using (var context = new DataContext(options))
             {
                 ISettingsRepository repository = new SettingsRepository(context);
-                ISettingsService settingsService = new SettingsService(repository);
+                IAddressRepository addressRepository = new AddressRepository(context);
+                IContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository(context);
+                ISettingsService settingsService = new SettingsService(repository, addressRepository, contactDetailsRepository);
                 SettingsController sut = new SettingsController(logger, settingsService);
                 IActionResult response = sut.Index();
 

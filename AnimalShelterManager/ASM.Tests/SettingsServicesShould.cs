@@ -26,7 +26,9 @@ namespace ASM.Tests
             using (var context = new DataContext(options))
             {
                 ISettingsRepository repository = new SettingsRepository(context);
-                ISettingsService sut = new SettingsService(repository);
+                IAddressRepository addressRepository = new AddressRepository(context);
+                IContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository(context);
+                ISettingsService sut = new SettingsService(repository, addressRepository, contactDetailsRepository);
 
                 var settings = sut.GetSettings();
 
@@ -40,8 +42,10 @@ namespace ASM.Tests
             using (var context = new DataContext(options))
             {
                 ISettingsRepository repository = new SettingsRepository(context);
-                ISettingsService sut = new SettingsService(repository);
-
+                IAddressRepository addressRepository = new AddressRepository(context);
+                IContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository(context);
+                ISettingsService sut = new SettingsService(repository, addressRepository, contactDetailsRepository);
+             
                 Settings settings = sut.GetSettings();
 
                 Assert.True(settings is Settings);
@@ -54,7 +58,9 @@ namespace ASM.Tests
             using (var context = new DataContext(options))
             {
                 ISettingsRepository repository = new SettingsRepository(context);
-                ISettingsService sut = new SettingsService(repository);
+                IAddressRepository addressRepository = new AddressRepository(context);
+                IContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository(context);
+                ISettingsService sut = new SettingsService(repository, addressRepository, contactDetailsRepository);
 
                 Settings settings = sut.GetSettings();
 
@@ -68,7 +74,9 @@ namespace ASM.Tests
             using (var context = new DataContext(options))
             {
                 ISettingsRepository repository = new SettingsRepository(context);
-                ISettingsService sut = new SettingsService(repository);
+                IAddressRepository addressRepository = new AddressRepository(context);
+                IContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository(context);
+                ISettingsService sut = new SettingsService(repository, addressRepository, contactDetailsRepository);
 
                 Settings settings = sut.GetSettings();
                 settings.Title = "Changed Shelter Name";
@@ -85,7 +93,9 @@ namespace ASM.Tests
             using (var context = new DataContext(options))
             {
                 ISettingsRepository repository = new SettingsRepository(context);
-                ISettingsService sut = new SettingsService(repository);
+                IAddressRepository addressRepository = new AddressRepository(context);
+                IContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository(context);
+                ISettingsService sut = new SettingsService(repository, addressRepository, contactDetailsRepository);
 
                 var settings = sut.GetSettings();
                 var address = settings.Address;
@@ -100,7 +110,9 @@ namespace ASM.Tests
             using (var context = new DataContext(options))
             {
                 ISettingsRepository repository = new SettingsRepository(context);
-                ISettingsService sut = new SettingsService(repository);
+                IAddressRepository addressRepository = new AddressRepository(context);
+                IContactDetailsRepository contactDetailsRepository = new ContactDetailsRepository(context);
+                ISettingsService sut = new SettingsService(repository, addressRepository, contactDetailsRepository);
 
                 var settings = sut.GetSettings();
                 var address = settings.Address;

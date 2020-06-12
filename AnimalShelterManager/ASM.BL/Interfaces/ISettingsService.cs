@@ -6,5 +6,6 @@ namespace ASM.BL.Interfaces
     {
         Settings GetSettings();
         Settings Update(Settings settings);
+        Settings Add(Settings settings);
     }
 }

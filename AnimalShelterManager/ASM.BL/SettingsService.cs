@@ -9,10 +9,22 @@ namespace ASM.BL
     public class SettingsService : ISettingsService
     {
         private ISettingsRepository _repository;
+        private IAddressRepository _addressRepository;
+        private IContactDetailsRepository _contactDetailsRepository;
 
-        public SettingsService(ISettingsRepository repository)
+        public SettingsService(ISettingsRepository repository, IAddressRepository addressRepository, IContactDetailsRepository contactDetailsRepository)
         {
             _repository = repository;
+            _addressRepository = addressRepository;
+            _contactDetailsRepository = contactDetailsRepository;
+        }
+
+        public Settings Add(Settings settings)
+        {
+            settings.ContactDetails = _contactDetailsRepository.Add(settings.ContactDetails);
+            settings.Address = _addressRepository.Add(settings.Address);
+
+            return _repository.Add(settings);
         }
 
         public Settings GetSettings()
@@ -50,7 +62,7 @@ namespace ASM.BL
                     ContactDetails = contact
                 };
 
-                _repository.Add(newSettings);
+                Add(newSettings);
                 return newSettings;
             }
             else
@@ -64,6 +76,9 @@ namespace ASM.BL
 
         public Settings Update(Settings settings)
         {
+            settings.ContactDetails = _contactDetailsRepository.Update(settings.ContactDetails);
+            settings.Address = _addressRepository.Update(settings.Address);
+
             return _repository.Update(settings);
         }
     }

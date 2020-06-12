@@ -28,6 +28,8 @@ namespace ASM.Web
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataContext")));
 
             services.AddTransient<ISettingsRepository, SettingsRepository>();
+            services.AddTransient<IAddressRepository, AddressRepository>();
+            services.AddTransient<IContactDetailsRepository, ContactDetailsRepository>();
             services.AddScoped<ISettingsService, SettingsService>();
 
         }
