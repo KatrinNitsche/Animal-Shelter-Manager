@@ -23,7 +23,7 @@ namespace ASM.BL
         {
             settings.ContactDetails = _contactDetailsRepository.Add(settings.ContactDetails);
             settings.Address = _addressRepository.Add(settings.Address);
-
+            
             return _repository.Add(settings);
         }
 
@@ -70,8 +70,11 @@ namespace ASM.BL
                 id = _repository.GetAll().First().Id;
             }
             
-
-            return _repository.GetById(id);           
+            var settingsData = _repository.GetById(id);
+            settingsData.Address = _addressRepository.GetById(settingsData.AddressId);
+            settingsData.ContactDetails = _contactDetailsRepository.GetById(settingsData.ContactDetailsId);
+           
+            return settingsData;
         }
 
         public Settings Update(Settings settings)

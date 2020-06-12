@@ -25,8 +25,7 @@ namespace ASM.DAL.Repositories
 
         public override Settings GetById(Guid id)
         {
-            return this.Context.Settings
-                .Include("Address").Include("ContactDetails")
+            return this.Context.Settings                
                 .FirstOrDefault(x => x.Id == id);
         }
 

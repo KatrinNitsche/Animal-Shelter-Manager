@@ -84,14 +84,14 @@ namespace ASM.Web.Controllers
             return new SettingsModel()
             {
                 Title = settingsData.Title,
-                Line1 = settingsData.Address.Line1,
-                Line2 = settingsData.Address.Line2,
-                City = settingsData.Address.City,
-                PostCode = settingsData.Address.PostCode,
-                Country = settingsData.Address.Country,
-                Email = settingsData.ContactDetails.Email,
-                Mobile = settingsData.ContactDetails.Mobile,
-                Phone = settingsData.ContactDetails.Phone
+                Line1 = settingsData.Address?.Line1,
+                Line2 = settingsData.Address?.Line2,
+                City = settingsData.Address?.City,
+                PostCode = settingsData.Address?.PostCode,
+                Country = settingsData.Address?.Country,
+                Email = settingsData.ContactDetails?.Email,
+                Mobile = settingsData.ContactDetails?.Mobile,
+                Phone = settingsData.ContactDetails?.Phone
             };
         }
 

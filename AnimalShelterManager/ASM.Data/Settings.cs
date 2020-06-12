@@ -7,8 +7,12 @@ namespace ASM.Data
         public Guid Id { get; set; }
         public string Title { get; set; }
 
-        public Address Address { get; set; }
+        public Guid AddressId { get; set; }
+        public Guid ContactDetailsId { get; set; }
 
-        public ContactDetails ContactDetails { get; set; }
+
+        public virtual Address Address { get; set; }
+
+        public virtual ContactDetails ContactDetails { get; set; }
     }
 }
