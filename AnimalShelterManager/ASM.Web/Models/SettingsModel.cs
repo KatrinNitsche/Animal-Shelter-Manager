@@ -2,13 +2,8 @@
 
 namespace ASM.Web.Models
 {
-    public class SettingsModel 
+    public class SettingsModel : BaseViewModel
     {
-        [Required] public string Title { get; set; }
-
-        public string Message { get; set; }
-        public string MessageType { get; set; }
-
         #region Address
 
         [Required] public string Line1 { get; set; }

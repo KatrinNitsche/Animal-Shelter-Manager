@@ -32,6 +32,8 @@ namespace ASM.Web
             services.AddTransient<IContactDetailsRepository, ContactDetailsRepository>();
             services.AddScoped<ISettingsService, SettingsService>();
 
+            services.AddTransient<IAnimalRepository, AnimalRepository>();
+            services.AddScoped<IAnimalService, AnimalService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -12,7 +12,7 @@ namespace ASM.DAL
 
         public DbSet<Settings> Settings { get; set; }
         public DbSet<Address> Addresses { get; set; }
-
         public DbSet<ContactDetails> ContactDetails { get; set; }
+        public DbSet<Animal> Animals { get; set; }
     }
 }
